@@ -1,0 +1,122 @@
+
+body {
+	background-color: #081a45;
+}
+
+header {
+	background-color: #081a45;
+	padding: 2rem 0;
+	text-align: center;
+}
+
+header * {
+	display: inline-block;
+	font-family: 'Architects Daughter', cursive;
+	font-size: 5rem;
+	color: white;
+}
+
+#header_icon {
+	font-size: 50px;
+	margin-right: 20px;
+}
+
+
+#select_usr {
+	width: 80vw;
+	
+	clear: both;
+	margin: 0 auto;
+	padding: 3rem;
+
+	background-color: #242856;
+}
+
+#select_usr .input-group{
+	width: 40vw;
+}
+
+#id1_011 {
+	padding-right: 10px;
+}
+
+#id1_02 {
+	clear: both;
+	margin-top: 2rem;
+	width: 60vw;
+	padding: 20px;
+
+	background-color: #081a45;
+}
+
+#id1_03 {
+	width: 60vw;
+
+}
+
+
+
+
+.cursor_pointer {
+	cursor: pointer;
+	color: white;
+}
+
+
+#agenda_usr {
+	clear: both;
+	background-color: #242856;
+	padding: 20px;
+}
+
+#agenda_usr #id2_01 {
+	clear: both; border: 1px solid white;
+	border-radius: 7px;
+	padding: 5px 10px;
+	width: 30vw;
+	color: white;
+	font-family: 'Architects Daughter', cursive;
+	font-size: 1.5rem;
+}
+
+#agenda_usr #id2_011 {
+	padding: 5px;
+
+	/*float: left;*/
+}
+
+#agenda_usr #id2_02 {
+	margin-top: 5px;
+	font-size: 25px;
+}
+
+#id_table {
+	clear: both;
+	border-collapse: separate;
+	border-spacing: 0px 10px;
+}
+
+#id2_03 {
+	text-align: center; 
+	background-color: #474747;
+}
+
+#id2_04{
+	 width: 13vw;
+	 text-align: center;
+	 font-size: 1.3rem;
+}
+
+#id2_05 {
+	width: 5vw;
+}
+
+
+#nuevo_evento {
+	background-color: #13216a;
+	color: white;
+}
+/*  PROBAR
+#nuevo_evento > :nth-child(1) {
+	width: 22vw;
+} */
