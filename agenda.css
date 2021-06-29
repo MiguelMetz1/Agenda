@@ -107,6 +107,15 @@ header * {
 	 font-size: 1.3rem;
 }
 
+#id2_04_2 {
+	background-color: #c1c1c0;
+}
+
+#id2_04_2:hover {
+	background-color: black;
+	/*border: 5px solid red;*/
+}
+
 #id2_05 {
 	width: 5vw;
 }

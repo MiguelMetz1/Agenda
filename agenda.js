@@ -1,4 +1,3 @@
-let id_unico = 0;
 
 
 const app1 = new Vue({
@@ -210,9 +209,16 @@ const app1 = new Vue({
 			this.a_mostrar_hora= ev.hora;
 
 			let hora = true;
+			this.a_mostrar_hs = '';
+			this.a_mostrar_mm = '';
+
+			console.log(ev.hora)
+			console.log(this.a_mostrar_hs);
+			console.log(this.a_mostrar_mm);
+				
 			
 			for (let i = 0; i < (ev.hora).length; i++) {
-				
+
 				if ( ((ev.hora)[i] != ':') && hora ) {
 					this.a_mostrar_hs += (ev.hora)[i];
 				} else if ( (ev.hora)[i] == ':' ) {
@@ -221,6 +227,9 @@ const app1 = new Vue({
 					this.a_mostrar_mm += (ev.hora)[i];
 				}
 			}
+			console.log(ev.hora)
+			console.log(this.a_mostrar_hs);
+			console.log(this.a_mostrar_mm);
 		},
 
 
@@ -232,7 +241,6 @@ const app1 = new Vue({
 			this.registro_eventos[this.usuario_actual.id] = actualizar_registro;
 
 			localStorage.setItem('registro_eventos_local', JSON.stringify(this.registro_eventos));
-
 		},
 
 

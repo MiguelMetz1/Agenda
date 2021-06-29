@@ -31,6 +31,8 @@
 		<h1> Agenda </h1>
 	</header>
 
+
+
 	<div id="app1">
 
 		<section id="select_usr" v-if="usuario_actual.nombre_usuario == '' ">
@@ -73,7 +75,6 @@
 				<b>Cuenta: {{usuario_actual.nombre_usuario}}
 				<span id="id2_02" class="material-icons float-end cursor_pointer" @click="usuario_actual.nombre_usuario=''">logout</span></b>
 			</div>
-			<br>
 
 
 			<table id="id_table" class="table table-bordered table-hover">
@@ -82,46 +83,52 @@
 
 					<td id="id2_04" v-if="!form_nuevo_evento || dia_del_nuevo_evento!=dia" class="table-dark"> <b> {{dia}} </b> </td>
 					
+
 					<td v-if="!form_nuevo_evento || dia_del_nuevo_evento!=dia" >
-					
-					<button class="btn mx-1" 
-					v-for="ev of eventos_usuario_actual" 
-					:class="ev.pendiente ? 'btn-outline-danger' : 'btn-outline-success'"  v-if="ev.dia == dia" 
-					@click="{mostrar_evento=true, show_event(ev)}"  
-					data-bs-toggle="modal" data-bs-target="#show_event"> 
-						<div><b>{{ev.titulo}}</b></div>  <div>{{ev.hora}}</div>
-					</button>
+
+						<button class="btn mx-1" id="id2_04_2" 
+						v-for="ev of eventos_usuario_actual" 
+						:class="ev.pendiente ? 'btn-outline-danger' : 'btn-outline-success'"  v-if="ev.dia == dia" 
+						@click="{mostrar_evento=true, show_event(ev)}"  
+						data-bs-toggle="modal" data-bs-target="#show_event"> 
+							<div><b>{{ev.titulo}}</b></div>  <div>{{ev.hora}}</div>
+						</button>
+
 					</td>
+
 
 					<td id="id2_05" v-if="!form_nuevo_evento || dia_del_nuevo_evento!=dia"> <button class="btn btn-secondary" @click="{form_nuevo_evento=true, dia_del_nuevo_evento=dia}">
 						<i class="material-icons">add_circle_outline</i> </button> 
 					</td>
 
+
 					<td colspan="3" v-if="form_nuevo_evento && dia_del_nuevo_evento==dia">
-					<form id="nuevo_evento" class="p-3">
 
-						<span  class="material-icons float-end cursor_pointer" @click="form_nuevo_evento=false">highlight_off</span>
+						<form id="nuevo_evento" class="p-3">
 
-						<div class="input-group mb-3" style="width: 22%">
-							<span class="input-group-text">Hora</span>
-							<input v-model="hs" type="text" class="form-control" placeholder="hs" required>
-							<span class="input-group-text">:</span>
-							<input v-model="mm" type="text" class="form-control" placeholder="mm">
-						</div>
+							<span  class="material-icons float-end cursor_pointer" @click="form_nuevo_evento=false">highlight_off</span>
 
-						<div class="input-group mb-3" style="width: 50%">
-							<span class="input-group-text">Titulo</span>
-							<input v-model="titulo" type="text" class="form-control" required>
-						</div>
+							<div class="input-group mb-3" style="width: 22%">
+								<span class="input-group-text">Hora</span>
+								<input v-model="hs" type="text" class="form-control" placeholder="hs" required>
+								<span class="input-group-text">:</span>
+								<input v-model="mm" type="text" class="form-control" placeholder="mm">
+							</div>
 
-						<div class="input-group mb-3" style="width: 70%">
-						  <span class="input-group-text">Descripcion</span>
-						  <textarea v-model="descripcion" class="form-control"></textarea>
-						</div>
+							<div class="input-group mb-3" style="width: 50%">
+								<span class="input-group-text">Titulo</span>
+								<input v-model="titulo" type="text" class="form-control" required>
+							</div>
 
-						<button class="btn btn-warning" @click="{form_nuevo_evento=false, nuevo_evento(dia)}"> Añadir </button>
+							<div class="input-group mb-3" style="width: 70%">
+							  <span class="input-group-text">Descripcion</span>
+							  <textarea v-model="descripcion" class="form-control"></textarea>
+							</div>
 
-					</form>
+							<button class="btn btn-warning" @click="{form_nuevo_evento=false, nuevo_evento(dia)}"> Añadir </button>
+
+						</form>
+
 					</td>
 
 				</tr>
@@ -135,60 +142,69 @@
 			  <div class="modal-dialog">
 			    <div class="modal-content">
 			      
-			      <div class="modal-header">
+			    	<div class="modal-header">
 			        
-			        <h5 class="modal-title" id="exampleModalLabel" v-if="!editar_evento"><b>{{a_mostrar_titulo}}</b></h5>
-			        
-			        <div class="input-group mb-3" style="width: 50%"  v-if="editar_evento">
-						<span class="input-group-text">Titulo</span>
-						<input v-model="a_mostrar_titulo" type="text" class="form-control" required>
-					</div>
+				        <h5 class="modal-title" id="exampleModalLabel" v-if="!editar_evento"><b>{{a_mostrar_titulo}}</b></h5>
+				        
+				        <div class="input-group mb-3" style="width: 50%"  v-if="editar_evento">
+							<span class="input-group-text">Titulo</span>
+							<input v-model="a_mostrar_titulo" type="text" class="form-control" required>
+						</div>
 
-			        <button type="button" class="btn-close" @click="editar_evento=false" data-bs-dismiss="modal" aria-label="Close"></button>
-			      </div>
+				        <button type="button" class="btn-close" @click="editar_evento=false" data-bs-dismiss="modal" aria-label="Close"></button>
+
+			    	</div>
+
+
+			    	<div class="modal-body" v-if="!editar_evento">
+				        <p>{{a_mostrar_dia}}</p>
+				        <p>{{a_mostrar_hora}}</p>
+				        <p>{{a_mostrar_descripcion}}</p>
+			    	</div>
+
+
+			    	<div class="modal-body" v-if="editar_evento">
+				        
+				        <div class="input-group mb-3" style="width: 50%"  v-if="editar_evento">
+							<span class="input-group-text">Dia</span>
+							<input v-model="a_mostrar_dia" type="text" class="form-control" required>
+						</div>
+
+						<div class="input-group mb-3" style="width: 50%">
+							<span class="input-group-text">Hora</span>
+							<input v-model="a_mostrar_hs" type="text" class="form-control" required>
+							<span class="input-group-text">:</span>
+							<input v-model="a_mostrar_mm" type="text" class="form-control">
+						</div>
+
+
+						<div class="input-group mb-3" style="width: 70%">
+						  <span class="input-group-text">Descripcion</span>
+						  <textarea v-model="a_mostrar_descripcion" class="form-control"></textarea>
+						</div>
+
+						<button type="button" class="btn btn-primary" 
+						@click="{editar_evento_actual(), editar_evento=false}">Guardar Cambios</button>
+
+			    	</div>
 			      
-			      <div class="modal-body" v-if="!editar_evento">
-			        <p>{{a_mostrar_dia}}</p>
-			        <p>{{a_mostrar_hora}}</p>
-			        <p>{{a_mostrar_descripcion}}</p>
-			      </div>
 
-			      <div class="modal-body" v-if="editar_evento">
-			        <div class="input-group mb-3" style="width: 50%"  v-if="editar_evento">
-						<span class="input-group-text">Dia</span>
-						<input v-model="a_mostrar_dia" type="text" class="form-control" required>
-					</div>
+			    	<div class="modal-footer">
 
-					<div class="input-group mb-3" style="width: 22%">
-						<span class="input-group-text">Hora</span>
-						<input v-model="a_mostrar_hs" type="text" class="form-control" required>
-						<span class="input-group-text">:</span>
-						<input v-model="a_mostrar_mm" type="text" class="form-control">
-					</div>
+				        <button type="button" class="btn btn-secondary" @click="editar_evento=false" data-bs-dismiss="modal">Close</button>
+				        
+				        <button type="button" class="btn btn-primary" @click="editar_evento=true">Editar</button>
+				        
+				        <button type="button" class="btn btn-success" @click="{set_evento_hecho(),editar_evento=false}" data-bs-dismiss="modal" v-if="a_mostrar_pendiente">
+				        	<span class="material-icons">done</span>
+				        </button>
+				        
+				        <button type="button" class="btn btn-danger" @click="{eliminar_evento(),editar_evento=false}" data-bs-dismiss="modal">
+				        	<span class="material-icons">delete</span>
+				        </button>
 
+			    	</div>
 
-					<div class="input-group mb-3" style="width: 70%">
-					  <span class="input-group-text">Descripcion</span>
-					  <textarea v-model="a_mostrar_descripcion" class="form-control"></textarea>
-					</div>
-
-					<button type="button" class="btn btn-primary" 
-					@click="{editar_evento_actual(), editar_evento=false}">Guardar Cambios</button>
-
-			      </div>
-			      
-			      <div class="modal-footer">
-
-			        <button type="button" class="btn btn-secondary" @click="editar_evento=false" data-bs-dismiss="modal">Close</button>
-			        <button type="button" class="btn btn-primary" @click="editar_evento=true">Editar</button>
-			        <button type="button" class="btn btn-success" @click="{set_evento_hecho,editar_evento=false}" data-bs-dismiss="modal" v-if="a_mostrar_pendiente">
-			        	<span class="material-icons">done</span>
-			        </button>
-			        <button type="button" class="btn btn-danger" @click="{eliminar_evento,editar_evento=false}" data-bs-dismiss="modal">
-			        	<span class="material-icons">delete</span>
-			        </button>
-
-			      </div>
 			    </div>
 			  </div>
 			</div>
@@ -196,10 +212,9 @@
 		</section>
 
 
-
-
-	
 	</div>
+
+
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
